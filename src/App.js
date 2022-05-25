@@ -12,6 +12,8 @@ function App() {
     canvas.height = window.innerHeight;
     const context = canvas.getContext("2d");
     contextRef.current = context;
+
+    drawLine();
   }, []);
 
   const draw = (name) => {
@@ -34,6 +36,13 @@ function App() {
   const drawSquare = () => {
     contextRef.current.beginPath();
     contextRef.current.rect(200, 100, 20, 20);
+    contextRef.current.stroke();
+  };
+
+  const drawLine = () => {
+    contextRef.current.beginPath();
+    contextRef.current.moveTo(300, 300);
+    contextRef.current.bezierCurveTo(450, 700, 600, 700, 750, 300);
     contextRef.current.stroke();
   };
 
