@@ -1,0 +1,19 @@
+.top-menu-container {
+  position: absolute;
+  left: 35%;
+  top: -150px;
+  background-color: #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s linear;
+}
+
+.top-menu-container ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+.top-menu-container:hover {
+  top: -10px;
+}
