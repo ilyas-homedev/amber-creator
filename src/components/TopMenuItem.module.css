@@ -1,7 +1,7 @@
 .item-container {
   width: 100px;
   height: 100px;
-  margin: 20px;
+  margin: 10px;
   border-radius: 4px;
   border: 1px solid gray;
   cursor: pointer;

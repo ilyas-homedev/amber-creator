@@ -1,0 +1,13 @@
+.add-btn {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background-image: url("../asssets/plus-circle.svg");
+  background-position: center;
+  border: none;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: aquamarine;
+}

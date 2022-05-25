@@ -1,5 +1,6 @@
 import classes from "./RightMenu.module.css";
 import RightMenuItem from "./RightMenuItem";
+import ShapeSettings from "./ShapeSettings";
 
 function RightMenu(props) {
   const shapes = [{ id: "circle" }, { id: "square" }];
@@ -15,6 +16,7 @@ function RightMenu(props) {
           <RightMenuItem value={item.id} key={item.id} onClick={drawShape} />
         ))}
       </ul>
+      <ShapeSettings />
     </div>
   );
 }
