@@ -1,6 +1,30 @@
+.container {
+  border-top: 2px solid #000;
+  padding: 10px 5px;
+  text-align: center;
+}
+
+.preview {
+  width: 100px;
+  height: 100px;
+  border-radius: 4px;
+  border: 1px solid gray;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.example {
+  border: 2px solid #000;
+  border-radius: 50%;
+}
+
 .add-btn {
+  display: block;
   width: 65px;
   height: 65px;
+  margin: 0 auto;
   border-radius: 50%;
   background-image: url("../asssets/plus-circle.svg");
   background-position: center;
@@ -10,4 +34,8 @@
 
 .add-btn:hover {
   background-color: aquamarine;
+}
+
+.radius {
+  width: 90%;
 }
