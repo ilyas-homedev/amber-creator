@@ -1,0 +1,19 @@
+.color-item-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 5px;
+}
+
+.color-item-container p {
+  margin: 0;
+  font-size: 12px;
+}
+
+.color-item-example {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #000;
+  cursor: pointer;
+}
