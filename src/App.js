@@ -63,7 +63,7 @@ function App() {
   return (
     <Fragment>
       <TopMenu />
-      <RightMenu onDraw={draw} />
+      <RightMenu />
       <canvas id="canvas" className={classes.canvas} ref={canvasRef}></canvas>
     </Fragment>
   );

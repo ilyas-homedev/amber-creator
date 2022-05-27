@@ -1,22 +1,24 @@
 import classes from "./RightMenu.module.css";
 import RightMenuItem from "./RightMenuItem";
 import ShapeSettings from "./ShapeSettings";
+import shapes from "../data/shapes";
+import { useState } from "react";
 
 function RightMenu(props) {
-  const shapes = [{ id: "circle" }, { id: "square" }];
+  const [choosenShape, setChoosenShape] = useState("circle");
 
-  const drawShape = (obj) => {
-    props.onDraw(obj);
+  const chooseShape = (shape) => {
+    setChoosenShape(shape);
   };
 
   return (
     <div className={classes["right-menu"]}>
       <ul className={classes.list}>
         {shapes.map((item) => (
-          <RightMenuItem value={item.id} key={item.id} onClick={drawShape} />
+          <RightMenuItem value={item.id} key={item.id} onClick={chooseShape} />
         ))}
       </ul>
-      <ShapeSettings />
+      <ShapeSettings shape={choosenShape} />
     </div>
   );
 }
