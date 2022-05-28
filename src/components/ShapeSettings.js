@@ -1,8 +1,6 @@
 import classes from "./ShapeSettings.module.css";
 import { useState } from "react";
-import ColorItem from "./ColorItem";
 import PreviewExample from "./PreviewExample";
-import materials from "../data/materials";
 import Materials from "./Materials";
 
 function ShapeSettings(props) {
@@ -48,9 +46,6 @@ function ShapeSettings(props) {
           </svg>
           Материал
         </button>
-        {/* {materials.map((material) => {
-            return <ColorItem key={material.id} name={material.name} />;
-          })} */}
         {materialsOn && <Materials />}
       </div>
       {(props.shape === "circle" || props.shape === "square") && (

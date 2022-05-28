@@ -1,6 +1,6 @@
-import classes from "./ColorItem.module.css";
+import classes from "./MaterialItem.module.css";
 
-function ColorItem(props) {
+function MaterialItem(props) {
   return (
     <div className={classes["color-item-container"]}>
       <div className={classes["color-item-example"]}></div>
@@ -9,4 +9,4 @@ function ColorItem(props) {
   );
 }
 
-export default ColorItem;
+export default MaterialItem;
