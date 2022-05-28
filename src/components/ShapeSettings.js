@@ -3,10 +3,12 @@ import { useState } from "react";
 import ColorItem from "./ColorItem";
 import PreviewExample from "./PreviewExample";
 import materials from "../data/materials";
+import Materials from "./Materials";
 
 function ShapeSettings(props) {
   const [sizeValue, setSizeValue] = useState(5);
   const [cornerRadiusValue, setCornerRadiusValue] = useState(0);
+  const [materialsOn, setMaterialsOn] = useState(false);
 
   const changeSize = (event) => {
     setSizeValue(event.target.value);
@@ -14,6 +16,10 @@ function ShapeSettings(props) {
 
   const changeCornerRadius = (event) => {
     setCornerRadiusValue(event.target.value);
+  };
+
+  const toggleMaterials = () => {
+    setMaterialsOn((prev) => !prev);
   };
 
   return (
@@ -24,11 +30,28 @@ function ShapeSettings(props) {
         cornerRadiusValue={cornerRadiusValue}
       />
       <div className={classes.controls}>
-        <div className={classes["colors-container"]}>
-          {materials.map((material) => {
+        <button className={classes["material-btn"]} onClick={toggleMaterials}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="feather feather-arrow-left"
+          >
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Материал
+        </button>
+        {/* {materials.map((material) => {
             return <ColorItem key={material.id} name={material.name} />;
-          })}
-        </div>
+          })} */}
+        {materialsOn && <Materials />}
       </div>
       {(props.shape === "circle" || props.shape === "square") && (
         <div className={classes.controls}>

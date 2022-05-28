@@ -3,6 +3,27 @@
   padding: 10px 5px;
 }
 
+.material-btn {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  transition: all 0.2s linear;
+}
+
+.material-btn svg {
+  position: absolute;
+  left: 5px;
+  top: 8px;
+}
+
+.material-btn:hover {
+  background-color: #fff;
+}
+
 .controls {
   text-align: center;
   margin: 20px auto;
@@ -10,13 +31,6 @@
 
 .range {
   width: 80%;
-}
-
-.colors-container {
-  width: 100%;
-  padding: 5px 0;
-  display: flex;
-  border: 1px solid gray;
 }
 
 .add-btn {
