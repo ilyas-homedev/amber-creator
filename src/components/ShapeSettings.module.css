@@ -28,13 +28,44 @@
   background-color: #fff;
 }
 
-.controls {
+.controls-pair {
+  margin-top: 10px;
+}
+
+.controls:first-child {
+  display: flex;
+  justify-content: space-between;
+}
+
+.controls:last-child {
   text-align: center;
-  margin: 20px auto;
+}
+
+.controls:last-child span {
+  font-size: 12px;
 }
 
 .range {
   width: 80%;
+}
+
+/* Custom corners container */
+.custom-corners-header {
+  margin: 10px 0 0 0;
+  text-align: center;
+}
+.custom-corners-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.custom-corners-container .controls-pair {
+  margin: 5px;
+}
+.custom-corners-container .controls {
+  text-align: start;
+}
+.custom-corners-container .controls:last-child input {
+  width: 60%;
 }
 
 .add-btn {

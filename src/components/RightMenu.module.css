@@ -5,7 +5,7 @@
   top: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   background-color: #ccc;
-  max-width: 250px;
+  max-width: 300px;
 }
 
 .list {
@@ -13,6 +13,6 @@
   display: flex;
   padding: 0;
   flex-wrap: wrap;
-  max-height: 36%;
+  max-height: 24%;
   overflow-y: scroll;
 }

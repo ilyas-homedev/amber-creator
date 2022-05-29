@@ -1,12 +1,19 @@
 import classes from "./ShapeSettings.module.css";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import PreviewExample from "./PreviewExample";
 import Materials from "./Materials";
 
 function ShapeSettings(props) {
+  const [materialsOn, setMaterialsOn] = useState(false);
   const [sizeValue, setSizeValue] = useState(5);
   const [cornerRadiusValue, setCornerRadiusValue] = useState(0);
-  const [materialsOn, setMaterialsOn] = useState(false);
+  const [widthValue, setWidthValue] = useState(10);
+  const [heightValue, setHeightValue] = useState(10);
+  // Custom corners
+  const [topLeftCornerValue, setTopLeftCornerValue] = useState(0);
+  const [topRightCornerValue, setTopRightCornerValue] = useState(0);
+  const [bottomLeftCornerValue, setBottomLeftCornerValue] = useState(0);
+  const [bottomRightCornerValue, setBottomRightCornerValue] = useState(0);
 
   const changeSize = (event) => {
     setSizeValue(event.target.value);
@@ -18,6 +25,31 @@ function ShapeSettings(props) {
 
   const toggleMaterials = () => {
     setMaterialsOn((prev) => !prev);
+  };
+
+  const changeWidthValue = (event) => {
+    setWidthValue(event.target.value);
+  };
+
+  const changeHeightValue = (event) => {
+    setHeightValue(event.target.velue);
+  };
+
+  // Custom corners handlers
+  const changeTopLeftCorner = (event) => {
+    setTopLeftCornerValue(event.target.value);
+  };
+
+  const changeTopRightCorner = (event) => {
+    setTopRightCornerValue(event.target.value);
+  };
+
+  const changeBottomLeftCorner = (event) => {
+    setBottomLeftCornerValue(event.target.value);
+  };
+
+  const changeBottomRightCorner = (event) => {
+    setBottomRightCornerValue(event.target.value);
   };
 
   return (
@@ -49,16 +81,18 @@ function ShapeSettings(props) {
         {materialsOn && <Materials />}
       </div>
       {(props.shape === "circle" || props.shape === "square") && (
-        <div className={classes.controls}>
-          <label htmlFor="size">Размер (2мм - 20мм): </label>
-          <input
-            type="number"
-            id="size"
-            min="2"
-            max="20"
-            value={sizeValue}
-            onChange={changeSize}
-          />
+        <div className={classes["controls-pair"]}>
+          <div className={classes.controls}>
+            <label htmlFor="size">Размер (2мм - 20мм): </label>
+            <input
+              type="number"
+              id="size"
+              min="2"
+              max="20"
+              value={sizeValue}
+              onChange={changeSize}
+            />
+          </div>
           <div className={classes.controls}>
             <span>2</span>
             <input
@@ -75,22 +109,82 @@ function ShapeSettings(props) {
           </div>
         </div>
       )}
-      {props.shape === "square" && (
-        <div className={classes.controls}>
-          <label htmlFor="size">Сглаживание углов: </label>
-          <input
-            type="number"
-            id="corner"
-            min="0"
-            max="50"
-            value={cornerRadiusValue}
-            onChange={changeCornerRadius}
-          />
+      {props.shape === "custom" && (
+        <div className={classes["controls-pair"]}>
+          <div className={classes.controls}>
+            <label htmlFor="width">Ширина: </label>
+            <input
+              type="number"
+              id="width"
+              min="2"
+              max="20"
+              value={widthValue}
+              onChange={changeWidthValue}
+            />
+          </div>
+          <div className={classes.controls}>
+            <span>2</span>
+            <input
+              type="range"
+              id="width"
+              className={classes.range}
+              min="2"
+              max="20"
+              step="1"
+              value={widthValue}
+              onChange={changeWidthValue}
+            />
+            <span>20</span>
+          </div>
+        </div>
+      )}
+      {props.shape === "custom" && (
+        <div className={classes["controls-pair"]}>
+          <div className={classes.controls}>
+            <label htmlFor="height">Высота: </label>
+            <input
+              type="number"
+              id="height"
+              min="2"
+              max="20"
+              value={heightValue}
+              onChange={changeHeightValue}
+            />
+          </div>
+          <div className={classes.controls}>
+            <span>2</span>
+            <input
+              type="range"
+              id="height"
+              className={classes.range}
+              min="2"
+              max="20"
+              step="1"
+              value={heightValue}
+              onChange={changeHeightValue}
+            />
+            <span>20</span>
+          </div>
+        </div>
+      )}
+      {(props.shape === "square" || props.shape === "custom") && (
+        <div className={classes["controls-pair"]}>
+          <div className={classes.controls}>
+            <label htmlFor="corners">Сглаживание углов: </label>
+            <input
+              type="number"
+              id="corners"
+              min="0"
+              max="50"
+              value={cornerRadiusValue}
+              onChange={changeCornerRadius}
+            />
+          </div>
           <div className={classes.controls}>
             <span>0%</span>
             <input
               type="range"
-              id="corner"
+              id="corners"
               className={classes.range}
               min="0"
               max="50"
@@ -102,6 +196,121 @@ function ShapeSettings(props) {
           </div>
         </div>
       )}
+
+      {props.shape === "custom" && (
+        <Fragment>
+          <p className={classes["custom-corners-header"]}>
+            Сглаживание углов по отдельности
+          </p>
+          <div className={classes["custom-corners-container"]}>
+            <div className={classes["controls-pair"]}>
+              <div className={classes.controls}>
+                <label htmlFor="topLeftCorner">Верх. Л.: </label>
+                <input
+                  type="number"
+                  id="topLeftCorner"
+                  min="0"
+                  max="50"
+                  value={topLeftCornerValue}
+                  onChange={changeTopLeftCorner}
+                />
+              </div>
+              <div className={classes.controls}>
+                <span>0%</span>
+                <input
+                  type="range"
+                  id="topLeftCorner"
+                  min="0"
+                  max="50"
+                  step="1"
+                  value={topLeftCornerValue}
+                  onChange={changeTopLeftCorner}
+                />
+                <span>50%</span>
+              </div>
+            </div>
+            <div className={classes["controls-pair"]}>
+              <div className={classes.controls}>
+                <label htmlFor="topRightCorner">Верх. П.: </label>
+                <input
+                  type="number"
+                  id="topRightCorner"
+                  min="0"
+                  max="50"
+                  value={topRightCornerValue}
+                  onChange={changeTopRightCorner}
+                />
+              </div>
+              <div className={classes.controls}>
+                <span>0%</span>
+                <input
+                  type="range"
+                  id="topRightCorner"
+                  min="0"
+                  max="50"
+                  step="1"
+                  value={topRightCornerValue}
+                  onChange={changeTopRightCorner}
+                />
+                <span>50%</span>
+              </div>
+            </div>
+            <div className={classes["controls-pair"]}>
+              <div className={classes.controls}>
+                <label htmlFor="bottomLeftCorner">Нижн. Л.: </label>
+                <input
+                  type="number"
+                  id="bottomLeftCorner"
+                  min="0"
+                  max="50"
+                  value={bottomLeftCornerValue}
+                  onChange={changeBottomLeftCorner}
+                />
+              </div>
+              <div className={classes.controls}>
+                <span>0%</span>
+                <input
+                  type="range"
+                  id="bottomLeftCorner"
+                  min="0"
+                  max="50"
+                  step="1"
+                  value={bottomLeftCornerValue}
+                  onChange={changeBottomLeftCorner}
+                />
+                <span>50%</span>
+              </div>
+            </div>
+            <div className={classes["controls-pair"]}>
+              <div className={classes.controls}>
+                <label htmlFor="bottomRightCorner">Нижн. П.: </label>
+                <input
+                  type="number"
+                  id="bottomRightCorner"
+                  min="0"
+                  max="50"
+                  value={bottomRightCornerValue}
+                  onChange={changeBottomRightCorner}
+                />
+              </div>
+              <div className={classes.controls}>
+                <span>0%</span>
+                <input
+                  type="range"
+                  id="bottomRightCorner"
+                  min="0"
+                  max="50"
+                  step="1"
+                  value={bottomRightCornerValue}
+                  onChange={changeBottomRightCorner}
+                />
+                <span>50%</span>
+              </div>
+            </div>
+          </div>
+        </Fragment>
+      )}
+
       <button className={classes["add-btn"]}></button>
     </div>
   );
