@@ -5,7 +5,7 @@ function MaterialType(props) {
   const materiaItemsArray = props.items;
   return (
     <div className={classes["type-container"]}>
-      <p>{props.name}</p>
+      <p className={classes["type-name"]}>{props.name}</p>
       <ul>
         {/* {materiaItemsArray.map((item) => {
           return <MaterialItem />;

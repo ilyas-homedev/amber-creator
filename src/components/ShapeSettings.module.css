@@ -20,6 +20,10 @@
   top: 8px;
 }
 
+.arrow-animation {
+  animation: sliding 0.5s linear;
+}
+
 .material-btn:hover {
   background-color: #fff;
 }
@@ -47,4 +51,16 @@
 
 .add-btn:hover {
   background-color: aquamarine;
+}
+
+@keyframes sliding {
+  0% {
+    left: 5px;
+  }
+  50% {
+    left: 15px;
+  }
+  100% {
+    left: 5px;
+  }
 }
