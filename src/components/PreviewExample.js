@@ -28,6 +28,20 @@ function PreviewExample(props) {
             }}
           ></div>
         )}
+
+        {props.shape === "custom" && (
+          <div
+            className={classes.example}
+            style={{
+              height: props.heightValue * PX_IN_MM,
+              width: props.widthValue * PX_IN_MM,
+              borderTopLeftRadius: props.topLeftCornerValue + "%",
+              borderTopRightRadius: props.topRightCornerValue + "%",
+              borderBottomLeftRadius: props.bottomLeftCornerValue + "%",
+              borderBottomRightRadius: props.bottomRightCornerValue + "%",
+            }}
+          ></div>
+        )}
       </div>
       <p className={classes["material-name"]}>Amber</p>
     </Fragment>

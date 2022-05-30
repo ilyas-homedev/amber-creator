@@ -32,7 +32,7 @@ function ShapeSettings(props) {
   };
 
   const changeHeightValue = (event) => {
-    setHeightValue(event.target.velue);
+    setHeightValue(event.target.value);
   };
 
   // Custom corners handlers
@@ -58,6 +58,12 @@ function ShapeSettings(props) {
         shape={props.shape}
         sizeValue={sizeValue}
         cornerRadiusValue={cornerRadiusValue}
+        topLeftCornerValue={topLeftCornerValue}
+        topRightCornerValue={topRightCornerValue}
+        bottomLeftCornerValue={bottomLeftCornerValue}
+        bottomRightCornerValue={bottomRightCornerValue}
+        widthValue={widthValue}
+        heightValue={heightValue}
       />
       <div className={classes.controls}>
         <button className={classes["material-btn"]} onClick={toggleMaterials}>
@@ -167,7 +173,7 @@ function ShapeSettings(props) {
           </div>
         </div>
       )}
-      {(props.shape === "square" || props.shape === "custom") && (
+      {props.shape === "square" && (
         <div className={classes["controls-pair"]}>
           <div className={classes.controls}>
             <label htmlFor="corners">Сглаживание углов: </label>
@@ -210,7 +216,7 @@ function ShapeSettings(props) {
                   type="number"
                   id="topLeftCorner"
                   min="0"
-                  max="50"
+                  max="100"
                   value={topLeftCornerValue}
                   onChange={changeTopLeftCorner}
                 />
@@ -221,12 +227,12 @@ function ShapeSettings(props) {
                   type="range"
                   id="topLeftCorner"
                   min="0"
-                  max="50"
+                  max="100"
                   step="1"
                   value={topLeftCornerValue}
                   onChange={changeTopLeftCorner}
                 />
-                <span>50%</span>
+                <span>100%</span>
               </div>
             </div>
             <div className={classes["controls-pair"]}>
@@ -236,7 +242,7 @@ function ShapeSettings(props) {
                   type="number"
                   id="topRightCorner"
                   min="0"
-                  max="50"
+                  max="100"
                   value={topRightCornerValue}
                   onChange={changeTopRightCorner}
                 />
@@ -247,12 +253,12 @@ function ShapeSettings(props) {
                   type="range"
                   id="topRightCorner"
                   min="0"
-                  max="50"
+                  max="100"
                   step="1"
                   value={topRightCornerValue}
                   onChange={changeTopRightCorner}
                 />
-                <span>50%</span>
+                <span>100%</span>
               </div>
             </div>
             <div className={classes["controls-pair"]}>
@@ -262,7 +268,7 @@ function ShapeSettings(props) {
                   type="number"
                   id="bottomLeftCorner"
                   min="0"
-                  max="50"
+                  max="100"
                   value={bottomLeftCornerValue}
                   onChange={changeBottomLeftCorner}
                 />
@@ -273,12 +279,12 @@ function ShapeSettings(props) {
                   type="range"
                   id="bottomLeftCorner"
                   min="0"
-                  max="50"
+                  max="100"
                   step="1"
                   value={bottomLeftCornerValue}
                   onChange={changeBottomLeftCorner}
                 />
-                <span>50%</span>
+                <span>100%</span>
               </div>
             </div>
             <div className={classes["controls-pair"]}>
@@ -288,7 +294,7 @@ function ShapeSettings(props) {
                   type="number"
                   id="bottomRightCorner"
                   min="0"
-                  max="50"
+                  max="100"
                   value={bottomRightCornerValue}
                   onChange={changeBottomRightCorner}
                 />
@@ -299,12 +305,12 @@ function ShapeSettings(props) {
                   type="range"
                   id="bottomRightCorner"
                   min="0"
-                  max="50"
+                  max="100"
                   step="1"
                   value={bottomRightCornerValue}
                   onChange={changeBottomRightCorner}
                 />
-                <span>50%</span>
+                <span>100%</span>
               </div>
             </div>
           </div>
