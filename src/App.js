@@ -5,6 +5,7 @@ import TopMenu from "./components/TopMenu";
 import { useSelector, useDispatch } from "react-redux";
 import { mouseActions } from "./store/store";
 import Necklace from "./classes/necklace";
+import Bracelet from "./classes/bracelet";
 
 function App() {
   const canvasRef = useRef();
@@ -73,7 +74,6 @@ function App() {
 
   const drawNecklace = (settings) => {
     const necklace = new Necklace(
-      canvasRef.current,
       contextRef.current,
       canvasBoundaries,
       settings
@@ -82,16 +82,12 @@ function App() {
   };
 
   const drawBracelet = (settings) => {
-    contextRef.current.beginPath();
-    contextRef.current.arc(
-      canvasRef.current.width / 2,
-      canvasRef.current.height / 2,
-      300,
-      0,
-      Math.PI * 2,
-      false
+    const bracelet = new Bracelet(
+      canvasRef.current,
+      contextRef.current,
+      settings
     );
-    contextRef.current.stroke();
+    bracelet.draw();
   };
 
   const handleMouseMove = (event) => {

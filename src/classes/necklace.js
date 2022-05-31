@@ -1,6 +1,5 @@
 export default class Necklace {
-  constructor(canvas, context, canvasBoundaries, settings) {
-    this.canvas = canvas;
+  constructor(context, canvasBoundaries, settings) {
     this.context = context;
     this.canvasBoundaries = canvasBoundaries;
     this.settings = settings;
