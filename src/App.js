@@ -4,6 +4,7 @@ import RightMenu from "./components/RightMenu";
 import TopMenu from "./components/TopMenu";
 import { useSelector, useDispatch } from "react-redux";
 import { mouseActions } from "./store/store";
+import Necklace from "./classes/necklace";
 
 function App() {
   const canvasRef = useRef();
@@ -45,7 +46,6 @@ function App() {
     canvas.height = window.innerHeight;
     const context = canvas.getContext("2d");
     contextRef.current = context;
-    // mouseMove();
   }, []);
 
   const draw = (name) => {
@@ -72,18 +72,13 @@ function App() {
   };
 
   const drawNecklace = (settings) => {
-    contextRef.current.beginPath();
-    contextRef.current.moveTo(canvasBoundaries.x1, canvasBoundaries.y1);
-    const pointsDistanceX = (canvasBoundaries.x2 - canvasBoundaries.x1) / 3;
-    contextRef.current.bezierCurveTo(
-      canvasBoundaries.x1 + pointsDistanceX,
-      700,
-      canvasBoundaries.x1 + pointsDistanceX * 2,
-      700,
-      canvasBoundaries.x2,
-      canvasBoundaries.y2
+    const necklace = new Necklace(
+      canvasRef.current,
+      contextRef.current,
+      canvasBoundaries,
+      settings
     );
-    contextRef.current.stroke();
+    necklace.draw();
   };
 
   const drawBracelet = (settings) => {
@@ -103,8 +98,6 @@ function App() {
     dispatch(
       mouseActions.setCoords({ mouseX: event.clientX, mouseY: event.clientY })
     );
-
-    console.log(mouse.x, mouse.y);
   };
 
   return (
