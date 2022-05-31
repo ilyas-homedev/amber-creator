@@ -9,13 +9,18 @@ function RightMenu(props) {
 
   const chooseShape = (shape) => {
     setChoosenShape(shape);
+    props.onChooseShape(shape);
   };
 
   return (
     <div className={classes["right-menu"]}>
       <ul className={classes.list}>
         {shapes.map((item) => (
-          <RightMenuItem value={item.id} key={item.id} onClick={chooseShape} />
+          <RightMenuItem
+            value={item.id}
+            key={item.id}
+            onClick={() => props.onChooseShape(item.id)}
+          />
         ))}
       </ul>
       <ShapeSettings shape={choosenShape} />

@@ -2,11 +2,16 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import classes from "./App.module.css";
 import RightMenu from "./components/RightMenu";
 import TopMenu from "./components/TopMenu";
+import { useSelector, useDispatch } from "react-redux";
+import { mouseActions } from "./store/store";
 
 function App() {
   const canvasRef = useRef();
   const contextRef = useRef();
   const [canvasBoundaries, setCanvasBoundaries] = useState({});
+
+  const dispatch = useDispatch();
+  const mouse = useSelector((state) => state);
 
   const drawLine = (type) => {
     contextRef.current.clearRect(
@@ -40,6 +45,7 @@ function App() {
     canvas.height = window.innerHeight;
     const context = canvas.getContext("2d");
     contextRef.current = context;
+    // mouseMove();
   }, []);
 
   const draw = (name) => {
@@ -93,11 +99,24 @@ function App() {
     contextRef.current.stroke();
   };
 
+  const handleMouseMove = (event) => {
+    dispatch(
+      mouseActions.setCoords({ mouseX: event.clientX, mouseY: event.clientY })
+    );
+
+    console.log(mouse.x, mouse.y);
+  };
+
   return (
     <Fragment>
       <TopMenu onChooseType={drawLine} />
-      <RightMenu />
-      <canvas id="canvas" className={classes.canvas} ref={canvasRef}></canvas>
+      <RightMenu onChooseShape={draw} />
+      <canvas
+        id="canvas"
+        className={classes.canvas}
+        ref={canvasRef}
+        onMouseMove={handleMouseMove}
+      ></canvas>
     </Fragment>
   );
 }
