@@ -77,8 +77,16 @@ function App() {
   };
 
   const drawCircle = () => {
+    const necklaceMiddle = necklace.takeCoordsOf(0.5);
     contextRef.current.beginPath();
-    contextRef.current.arc(100, 100, 10, 0, Math.PI * 2, false);
+    contextRef.current.arc(
+      necklaceMiddle.x,
+      necklaceMiddle.y,
+      10,
+      0,
+      Math.PI * 2,
+      false
+    );
     contextRef.current.stroke();
   };
 
@@ -92,8 +100,6 @@ function App() {
     const necklace = new Necklace(contextRef.current, coords, settings);
     necklace.draw();
     setNecklace(necklace);
-    const middle = necklace.takeCoordsOf(0.5);
-    console.log("middle", middle);
   };
 
   const drawBracelet = (settings) => {
