@@ -10,7 +10,8 @@ import Bracelet from "./classes/bracelet";
 function App() {
   const canvasRef = useRef();
   const contextRef = useRef();
-  const [canvasBoundaries, setCanvasBoundaries] = useState({});
+  const [necklace, setNecklace] = useState(null);
+  const [necklaceCoords, setNeckalceCoords] = useState({});
 
   const dispatch = useDispatch();
   const mouse = useSelector((state) => state);
@@ -22,16 +23,10 @@ function App() {
       canvasRef.current.width,
       canvasRef.current.height
     );
-    setCanvasBoundaries({
-      x1: 200,
-      y1: 200,
-      x2: canvasRef.current.width - 450,
-      y2: 200,
-    });
 
     switch (type) {
       case "necklace":
-        drawNecklace(type.settings);
+        drawNecklace(necklaceCoords, type.settings);
         break;
       case "bracelet":
         drawBracelet(type.settings);
@@ -47,6 +42,27 @@ function App() {
     canvas.height = window.innerHeight;
     const context = canvas.getContext("2d");
     contextRef.current = context;
+
+    const x1 = 200;
+    const y1 = 300;
+    const x2 = canvasRef.current.width - 450;
+    const y2 = y1;
+    const pointsDistanceX = (x2 - x1) / 3;
+    const px1 = x1 + pointsDistanceX;
+    const py1 = 700;
+    const px2 = x1 + pointsDistanceX * 2;
+    const py2 = 700;
+
+    setNeckalceCoords({
+      x1: x1,
+      y1: y1,
+      x2: x2,
+      y2: y2,
+      px1: px1,
+      py1: py1,
+      px2: px2,
+      py2: py2,
+    });
   }, []);
 
   const draw = (name) => {
@@ -72,13 +88,12 @@ function App() {
     contextRef.current.stroke();
   };
 
-  const drawNecklace = (settings) => {
-    const necklace = new Necklace(
-      contextRef.current,
-      canvasBoundaries,
-      settings
-    );
+  const drawNecklace = (coords, settings) => {
+    const necklace = new Necklace(contextRef.current, coords, settings);
     necklace.draw();
+    setNecklace(necklace);
+    const middle = necklace.takeCoordsOf(0.5);
+    console.log("middle", middle);
   };
 
   const drawBracelet = (settings) => {

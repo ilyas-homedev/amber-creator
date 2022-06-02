@@ -19,7 +19,7 @@ function RightMenu(props) {
           <RightMenuItem
             value={item.id}
             key={item.id}
-            onClick={() => props.onChooseShape(item.id)}
+            onClick={() => chooseShape(item.id)}
           />
         ))}
       </ul>
