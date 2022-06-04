@@ -2,6 +2,7 @@ import classes from "./ShapeSettings.module.css";
 import { Fragment, useState } from "react";
 import PreviewExample from "./PreviewExample";
 import Materials from "./Materials";
+import { PX_IN_MM } from "../data/pixelsInMillimeter";
 
 function ShapeSettings(props) {
   const [materialsOn, setMaterialsOn] = useState(false);
@@ -50,6 +51,23 @@ function ShapeSettings(props) {
 
   const changeBottomRightCorner = (event) => {
     setBottomRightCornerValue(event.target.value);
+  };
+
+  // Add shape button
+  const addShapeHandler = () => {
+    const currentSHapeSettings = {
+      shape: props.shape,
+      sizeValue: sizeValue * PX_IN_MM,
+      cornerRadiusValue: cornerRadiusValue,
+      widthValue: widthValue * PX_IN_MM,
+      heightValue: heightValue * PX_IN_MM,
+      topLeftCornerValue: topLeftCornerValue,
+      topRightCornerValue: topRightCornerValue,
+      bottomLeftCornerValue: bottomLeftCornerValue,
+      bottomRightCornerValue: bottomRightCornerValue,
+    };
+
+    props.onApplyShapeSettings(currentSHapeSettings);
   };
 
   return (
@@ -317,7 +335,7 @@ function ShapeSettings(props) {
         </Fragment>
       )}
 
-      <button className={classes["add-btn"]}></button>
+      <button className={classes["add-btn"]} onClick={addShapeHandler}></button>
     </div>
   );
 }

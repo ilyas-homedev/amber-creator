@@ -65,24 +65,24 @@ function App() {
     });
   }, []);
 
-  const draw = (name) => {
-    switch (name) {
+  const draw = (shapeSettings) => {
+    switch (shapeSettings.shape) {
       case "circle":
-        drawCircle();
+        drawCircle(shapeSettings);
         break;
       case "square":
-        drawSquare();
+        drawSquare(shapeSettings);
         break;
     }
   };
 
-  const drawCircle = () => {
+  const drawCircle = (settings) => {
     const necklaceMiddle = necklace.takeCoordsOf(0.5);
     contextRef.current.beginPath();
     contextRef.current.arc(
       necklaceMiddle.x,
       necklaceMiddle.y,
-      10,
+      settings.sizeValue / 2,
       0,
       Math.PI * 2,
       false
@@ -90,9 +90,9 @@ function App() {
     contextRef.current.stroke();
   };
 
-  const drawSquare = () => {
+  const drawSquare = (settings) => {
     contextRef.current.beginPath();
-    contextRef.current.rect(200, 100, 20, 20);
+    contextRef.current.rect(200, 100, settings.sizeValue, settings.sizeValue);
     contextRef.current.stroke();
   };
 

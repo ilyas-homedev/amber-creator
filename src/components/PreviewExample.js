@@ -1,9 +1,8 @@
 import classes from "./PreviewExample.module.css";
 import { Fragment } from "react";
+import { PX_IN_MM } from "../data/pixelsInMillimeter";
 
 function PreviewExample(props) {
-  const PX_IN_MM = 3.7795275591;
-
   return (
     <Fragment>
       <div className={classes["preview-container"]}>

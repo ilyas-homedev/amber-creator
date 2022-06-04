@@ -9,7 +9,10 @@ function RightMenu(props) {
 
   const chooseShape = (shape) => {
     setChoosenShape(shape);
-    props.onChooseShape(shape);
+  };
+
+  const applyShapeSettings = (shapeSettings) => {
+    props.onChooseShape(shapeSettings);
   };
 
   return (
@@ -23,7 +26,10 @@ function RightMenu(props) {
           />
         ))}
       </ul>
-      <ShapeSettings shape={choosenShape} />
+      <ShapeSettings
+        shape={choosenShape}
+        onApplyShapeSettings={applyShapeSettings}
+      />
     </div>
   );
 }
