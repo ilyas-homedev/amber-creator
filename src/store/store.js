@@ -11,9 +11,26 @@ const mouseCoordsSlice = createSlice({
   },
 });
 
+const shapesArraySlice = createSlice({
+  name: "shapesArray",
+  initialState: [],
+  reducers: {
+    addShapeToTheLeft(state, action) {
+      state.push(action.payload.shape);
+    },
+    addShapeToTheRight(state, action) {
+      state.unshift(action.payload.shape);
+    },
+  },
+});
+
 const store = configureStore({
-  reducer: mouseCoordsSlice.reducer,
+  reducer: {
+    mouse: mouseCoordsSlice.reducer,
+    shapes: shapesArraySlice.reducer,
+  },
 });
 
 export const mouseActions = mouseCoordsSlice.actions;
+export const shapeActions = shapesArraySlice.actions;
 export default store;
