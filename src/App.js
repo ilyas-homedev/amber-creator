@@ -3,7 +3,7 @@ import classes from "./App.module.css";
 import RightMenu from "./components/RightMenu";
 import TopMenu from "./components/TopMenu";
 import { useSelector, useDispatch } from "react-redux";
-import { mouseActions } from "./store/store";
+import { mouseActions, shapeActions } from "./store/store";
 import Necklace from "./classes/necklace";
 import Bracelet from "./classes/bracelet";
 
@@ -14,7 +14,9 @@ function App() {
   const [necklaceCoords, setNeckalceCoords] = useState({});
 
   const dispatch = useDispatch();
-  const mouse = useSelector((state) => state);
+  const mouse = useSelector((state) => state.mouse);
+  const shapesArray = useSelector((state) => state.shapes);
+  console.log(shapesArray);
 
   const drawLine = (type) => {
     contextRef.current.clearRect(
@@ -79,15 +81,28 @@ function App() {
   const drawCircle = (settings) => {
     const necklaceMiddle = necklace.takeCoordsOf(0.5);
     contextRef.current.beginPath();
+
+    const circleObj = {
+      id: settings.shape + `_${Math.random() * 10000}`,
+      x: necklaceMiddle.x,
+      y: necklaceMiddle.y,
+      radius: settings.sizeValue / 2,
+      startPoint: 0,
+      endPoint: Math.PI * 2,
+      clockWise: false,
+    };
+
     contextRef.current.arc(
-      necklaceMiddle.x,
-      necklaceMiddle.y,
-      settings.sizeValue / 2,
-      0,
-      Math.PI * 2,
-      false
+      circleObj.x,
+      circleObj.y,
+      circleObj.radius,
+      circleObj.startPoint,
+      circleObj.endPoint,
+      circleObj.clockWise
     );
     contextRef.current.stroke();
+
+    dispatch(shapeActions.addShapeToTheLeft({ shape: circleObj }));
   };
 
   const drawSquare = (settings) => {
