@@ -3,7 +3,7 @@ import classes from "./App.module.css";
 import RightMenu from "./components/RightMenu";
 import TopMenu from "./components/TopMenu";
 import { useSelector, useDispatch } from "react-redux";
-import { mouseActions, shapeActions } from "./store/store";
+import { mouseActions, shapeActions, typeActions } from "./store/store";
 import Necklace from "./classes/necklace";
 import Bracelet from "./classes/bracelet";
 import Line from "./classes/line";
@@ -17,6 +17,9 @@ function App() {
   const dispatch = useDispatch();
   const mouse = useSelector((state) => state.mouse);
   const shapesArray = useSelector((state) => state.shapes);
+  const type = useSelector((state) => state.type);
+
+  console.log(type);
 
   const drawLine = (typeSettings) => {
     contextRef.current.clearRect(
@@ -116,6 +119,12 @@ function App() {
     const necklace = new Necklace(contextRef.current, coords, settings);
     necklace.draw();
     setNecklace(necklace);
+
+    const necklaceObject = {
+      ...coords,
+      ...settings,
+    };
+    dispatch(typeActions.createType({ type: necklaceObject }));
   };
 
   const drawBracelet = (settings) => {

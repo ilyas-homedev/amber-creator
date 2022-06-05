@@ -24,13 +24,26 @@ const shapesArraySlice = createSlice({
   },
 });
 
+const typeObjectSlice = createSlice({
+  name: "typeObject",
+  initialState: {},
+  reducers: {
+    createType(state, action) {
+      state = action.payload.type;
+      console.log(state);
+    },
+  },
+});
+
 const store = configureStore({
   reducer: {
     mouse: mouseCoordsSlice.reducer,
     shapes: shapesArraySlice.reducer,
+    type: typeObjectSlice.reducer,
   },
 });
 
 export const mouseActions = mouseCoordsSlice.actions;
 export const shapeActions = shapesArraySlice.actions;
+export const typeActions = typeObjectSlice.actions;
 export default store;
