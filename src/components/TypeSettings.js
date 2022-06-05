@@ -15,7 +15,7 @@ function TypeSettings(props) {
 
   return (
     <div className={classes["settings-container"]}>
-      {props.type === "necklace" && (
+      {(props.type === "necklace" || props.type === "line") && (
         <div className={classes["controls-pair"]}>
           <div className={classes.controls}>
             <label htmlFor="type-length">Длина (см): </label>

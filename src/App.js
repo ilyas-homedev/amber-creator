@@ -40,8 +40,8 @@ function App() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth - 20;
+    canvas.height = window.innerHeight - 20;
     const context = canvas.getContext("2d");
     contextRef.current = context;
 
