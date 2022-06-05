@@ -1,0 +1,22 @@
+.settings-container {
+  min-width: 300px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.add-btn {
+  display: block;
+  width: 65px;
+  height: 65px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-image: url("../asssets/plus-circle.svg");
+  background-position: center;
+  border: none;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: aquamarine;
+}

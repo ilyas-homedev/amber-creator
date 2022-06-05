@@ -83,7 +83,7 @@ function App() {
     contextRef.current.beginPath();
 
     const circleObj = {
-      id: settings.shape + `_${Math.random() * 10000}`,
+      id: settings.shape + `_${Math.floor(Math.random() * 10000)}`,
       x: necklaceMiddle.x,
       y: necklaceMiddle.y,
       radius: settings.sizeValue / 2,
