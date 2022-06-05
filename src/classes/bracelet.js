@@ -10,7 +10,7 @@ export default class Bracelet {
     this.context.arc(
       this.canvas.width / 2,
       this.canvas.height / 2,
-      300,
+      this.settings.size / 2,
       0,
       Math.PI * 2,
       false

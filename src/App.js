@@ -17,25 +17,23 @@ function App() {
   const dispatch = useDispatch();
   const mouse = useSelector((state) => state.mouse);
   const shapesArray = useSelector((state) => state.shapes);
-  console.log(shapesArray);
 
-  const drawLine = (type) => {
+  const drawLine = (typeSettings) => {
     contextRef.current.clearRect(
       0,
       0,
       canvasRef.current.width,
       canvasRef.current.height
     );
-
-    switch (type) {
+    switch (typeSettings.type) {
       case "necklace":
-        drawNecklace(necklaceCoords, type.settings);
+        drawNecklace(necklaceCoords, typeSettings);
         break;
       case "bracelet":
-        drawBracelet(type.settings);
+        drawBracelet(typeSettings);
         break;
       case "line":
-        drawLineType(type.settings);
+        drawLineType(typeSettings);
       default:
         break;
     }

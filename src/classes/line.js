@@ -8,7 +8,10 @@ export default class Line {
   draw() {
     this.context.beginPath();
     this.context.moveTo(100, this.canvas.height / 2 + 50);
-    this.context.lineTo(800, this.canvas.height / 2 + 50);
+    this.context.lineTo(
+      this.settings.length + 100,
+      this.canvas.height / 2 + 50
+    );
     this.context.stroke();
   }
 }

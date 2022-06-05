@@ -1,5 +1,6 @@
 import classes from "./TypeSettings.module.css";
 import { useState } from "react";
+import { PX_IN_MM } from "../data/pixelsInMillimeter";
 
 function TypeSettings(props) {
   const [typeLengthValue, setTypeLengthValue] = useState(40);
@@ -11,6 +12,16 @@ function TypeSettings(props) {
 
   const changeTypeSize = (event) => {
     setTypeSizeValue(event.target.value);
+  };
+
+  const addTypeHandler = () => {
+    const currentTypeSettings = {
+      type: props.type,
+      length: typeLengthValue * 10 * PX_IN_MM,
+      size: typeSizehValue * PX_IN_MM,
+    };
+
+    props.onApplyTypeSettings(currentTypeSettings);
   };
 
   return (
@@ -73,7 +84,7 @@ function TypeSettings(props) {
           </div>
         </div>
       )}
-      <button className={classes["add-btn"]} onClick={() => {}}></button>
+      <button className={classes["add-btn"]} onClick={addTypeHandler}></button>
     </div>
   );
 }

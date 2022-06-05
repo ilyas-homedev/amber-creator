@@ -12,6 +12,10 @@ function TopMenu(props) {
     props.onChooseType(type);
   };
 
+  const applyTypeSettings = (typeSettings) => {
+    props.onChooseType(typeSettings);
+  };
+
   return (
     <div className={classes["top-menu-container"]}>
       <ul>
@@ -19,7 +23,10 @@ function TopMenu(props) {
           <TopMenuItem value={type.id} key={type.id} onClick={chooseType} />
         ))}
       </ul>
-      <TypeSettings type={choosenType} />
+      <TypeSettings
+        type={choosenType}
+        onApplyTypeSettings={applyTypeSettings}
+      />
     </div>
   );
 }
