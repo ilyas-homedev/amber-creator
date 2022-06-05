@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { mouseActions, shapeActions } from "./store/store";
 import Necklace from "./classes/necklace";
 import Bracelet from "./classes/bracelet";
+import Line from "./classes/line";
 
 function App() {
   const canvasRef = useRef();
@@ -33,6 +34,8 @@ function App() {
       case "bracelet":
         drawBracelet(type.settings);
         break;
+      case "line":
+        drawLineType(type.settings);
       default:
         break;
     }
@@ -124,6 +127,11 @@ function App() {
       settings
     );
     bracelet.draw();
+  };
+
+  const drawLineType = (settings) => {
+    const line = new Line(canvasRef.current, contextRef.current, settings);
+    line.draw();
   };
 
   const handleMouseMove = (event) => {
