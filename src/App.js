@@ -7,6 +7,7 @@ import { mouseActions, shapeActions, typeActions } from "./store/store";
 import Necklace from "./classes/necklace";
 import Bracelet from "./classes/bracelet";
 import Line from "./classes/line";
+import usePan from "./hooks/usePan";
 
 function App() {
   const canvasRef = useRef();
@@ -14,6 +15,9 @@ function App() {
   const [necklace, setNecklace] = useState(null);
   const [necklaceCoords, setNeckalceCoords] = useState({});
   const [canvasScale, setCanvasScale] = useState(1);
+
+  // mouse pan
+  const [offset, startPan] = usePan();
 
   const dispatch = useDispatch();
   const mouse = useSelector((state) => state.mouse);
@@ -167,10 +171,12 @@ function App() {
         ref={canvasRef}
         onMouseMove={handleMouseMove}
         onWheel={handleZooming}
+        onMouseDown={startPan}
         style={{
           transform: `scale(${canvasScale})`,
         }}
       ></canvas>
+      <span>{JSON.stringify(offset)}</span>
     </Fragment>
   );
 }
