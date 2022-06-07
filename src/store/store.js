@@ -35,15 +35,23 @@ const typeObjectSlice = createSlice({
   },
 });
 
+const canvasSlice = createSlice({
+  name: "canvas",
+  initialState: { offset: { x: 0, y: 0 }, scale: 1 },
+  reducers: {},
+});
+
 const store = configureStore({
   reducer: {
     mouse: mouseCoordsSlice.reducer,
     shapes: shapesArraySlice.reducer,
     type: typeObjectSlice.reducer,
+    canvas: canvasSlice.reducer,
   },
 });
 
 export const mouseActions = mouseCoordsSlice.actions;
 export const shapeActions = shapesArraySlice.actions;
 export const typeActions = typeObjectSlice.actions;
+export const canvasActions = canvasSlice.actions;
 export default store;

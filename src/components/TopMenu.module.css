@@ -1,5 +1,6 @@
 .top-menu-container {
   position: absolute;
+  z-index: 10;
   display: flex;
   padding: 0 10px;
   top: 0;

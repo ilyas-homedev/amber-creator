@@ -13,13 +13,14 @@ function App() {
   const contextRef = useRef();
   const [necklace, setNecklace] = useState(null);
   const [necklaceCoords, setNeckalceCoords] = useState({});
+  const [canvasScale, setCanvasScale] = useState(1);
 
   const dispatch = useDispatch();
   const mouse = useSelector((state) => state.mouse);
   const shapesArray = useSelector((state) => state.shapes);
   const type = useSelector((state) => state.type);
 
-  console.log(type);
+  // console.log(type);
 
   const drawLine = (typeSettings) => {
     contextRef.current.clearRect(
@@ -147,6 +148,15 @@ function App() {
     );
   };
 
+  // Zooming canvas
+  const handleZooming = (event) => {
+    if (canvasScale > 1 || canvasScale < 4) {
+      setCanvasScale((prev) => (prev += event.deltaY * -0.01));
+    }
+    console.log(event);
+    console.log(canvasScale);
+  };
+
   return (
     <Fragment>
       <TopMenu onChooseType={drawLine} />
@@ -156,6 +166,10 @@ function App() {
         className={classes.canvas}
         ref={canvasRef}
         onMouseMove={handleMouseMove}
+        onWheel={handleZooming}
+        style={{
+          transform: `scale(${canvasScale})`,
+        }}
       ></canvas>
     </Fragment>
   );
