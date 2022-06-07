@@ -29,7 +29,7 @@ function usePan() {
   const endPan = useCallback(() => {
     document.removeEventListener("mousemove", pan);
     document.removeEventListener("mouseup", endPan);
-  });
+  }, [pan]);
 
   const startPan = useCallback(
     (event) => {

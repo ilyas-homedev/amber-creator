@@ -8,6 +8,7 @@ import Necklace from "./classes/necklace";
 import Bracelet from "./classes/bracelet";
 import Line from "./classes/line";
 import usePan from "./hooks/usePan";
+import useScale from "./hooks/useScale";
 
 function App() {
   const canvasRef = useRef();
@@ -18,6 +19,7 @@ function App() {
 
   // mouse pan
   const [offset, startPan] = usePan();
+  const scale = useScale();
 
   const dispatch = useDispatch();
   const mouse = useSelector((state) => state.mouse);
@@ -177,6 +179,7 @@ function App() {
         }}
       ></canvas>
       <span>{JSON.stringify(offset)}</span>
+      <span>{scale}</span>
     </Fragment>
   );
 }
