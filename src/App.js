@@ -51,7 +51,7 @@ function App() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    canvas.width = window.innerWidth - 20;
+    canvas.width = window.innerWidth + 1000;
     canvas.height = window.innerHeight - 20;
     const context = canvas.getContext("2d");
     contextRef.current = context;
@@ -160,13 +160,20 @@ function App() {
     <Fragment>
       <TopMenu onChooseType={drawLine} />
       <RightMenu onChooseShape={draw} />
-      <canvas
-        id="canvas"
-        className={classes.canvas}
-        ref={canvasRef}
-        onMouseMove={handleMouseMove}
+      <div
+        className={classes["canvas-wrapper"]}
         onMouseDown={startPan}
-      ></canvas>
+        onMouseMove={handleMouseMove}
+      >
+        <canvas
+          id="canvas"
+          className={classes.canvas}
+          ref={canvasRef}
+          style={{
+            transform: `scale(${scale}) translate(${-offset.x}px, ${-offset.y}px)`,
+          }}
+        ></canvas>
+      </div>
       <div className={classes["zoom-data"]}>
         <span>{JSON.stringify(offset)}</span>
         <span>{scale}</span>

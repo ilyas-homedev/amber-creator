@@ -11,13 +11,13 @@ function useScale(ref = null) {
     setScale((currentScale) => {
       let scale;
 
-      if (direction === "up" && currentScale + interval < MAX_SCALE) {
+      if (direction === "down" && currentScale + interval < MAX_SCALE) {
         scale = currentScale + interval;
-      } else if (direction === "up") {
-        scale = MAX_SCALE;
-      } else if (direction === "down" && currentScale - interval > MIN_SCALE) {
-        scale = currentScale - interval;
       } else if (direction === "down") {
+        scale = MAX_SCALE;
+      } else if (direction === "up" && currentScale - interval > MIN_SCALE) {
+        scale = currentScale - interval;
+      } else if (direction === "up") {
         scale = MIN_SCALE;
       } else {
         scale = currentScale;
