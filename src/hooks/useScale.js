@@ -1,9 +1,10 @@
 import { useState } from "react";
+import useEventListener from "./useEventListener";
 
 const MIN_SCALE = 0.5;
 const MAX_SCALE = 3;
 
-function useScale() {
+function useScale(ref = null) {
   const [scale, setScale] = useState(1);
 
   const updateScale = ({ direction, interval }) => {
@@ -26,11 +27,12 @@ function useScale() {
     });
   };
 
-  document.addEventListener("wheel", (event) => {
-    event.preventDefault();
+  // Set up an event listener such that on `wheel`, we call `updateScale`.
+  useEventListener(ref, "wheel", (e) => {
+    e.preventDefault();
 
     updateScale({
-      direction: event.deltaY > 0 ? "up" : "down",
+      direction: e.deltaY > 0 ? "up" : "down",
       interval: 0.1,
     });
   });

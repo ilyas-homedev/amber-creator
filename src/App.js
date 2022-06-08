@@ -15,11 +15,10 @@ function App() {
   const contextRef = useRef();
   const [necklace, setNecklace] = useState(null);
   const [necklaceCoords, setNeckalceCoords] = useState({});
-  const [canvasScale, setCanvasScale] = useState(1);
 
-  // mouse pan
+  // mouse pan and canvas zooming
   const [offset, startPan] = usePan();
-  const scale = useScale();
+  const scale = useScale(canvasRef);
 
   const dispatch = useDispatch();
   const mouse = useSelector((state) => state.mouse);
@@ -44,6 +43,7 @@ function App() {
         break;
       case "line":
         drawLineType(typeSettings);
+        break;
       default:
         break;
     }
@@ -85,6 +85,8 @@ function App() {
         break;
       case "square":
         drawSquare(shapeSettings);
+        break;
+      default:
         break;
     }
   };
@@ -154,15 +156,6 @@ function App() {
     );
   };
 
-  // Zooming canvas
-  const handleZooming = (event) => {
-    if (canvasScale > 1 || canvasScale < 4) {
-      setCanvasScale((prev) => (prev += event.deltaY * -0.01));
-    }
-    console.log(event);
-    console.log(canvasScale);
-  };
-
   return (
     <Fragment>
       <TopMenu onChooseType={drawLine} />
@@ -172,14 +165,12 @@ function App() {
         className={classes.canvas}
         ref={canvasRef}
         onMouseMove={handleMouseMove}
-        onWheel={handleZooming}
         onMouseDown={startPan}
-        style={{
-          transform: `scale(${canvasScale})`,
-        }}
       ></canvas>
-      <span>{JSON.stringify(offset)}</span>
-      <span>{scale}</span>
+      <div className={classes["zoom-data"]}>
+        <span>{JSON.stringify(offset)}</span>
+        <span>{scale}</span>
+      </div>
     </Fragment>
   );
 }
